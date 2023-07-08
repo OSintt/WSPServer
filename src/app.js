@@ -2,7 +2,15 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import axios from 'axios';
+import ApiKey from "./models/ApiKey";
 
+const getKey = async () => {
+  const key = await ApiKey.find();
+  return key[0].key;
+}
+
+axios.defaults.headers.common['api-key'] = getKey();
 const app = express();
 
 //settings

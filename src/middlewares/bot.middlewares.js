@@ -1,14 +1,15 @@
 import Bot from "../models/Bot";
+import Key from "../models/ApiKey";
+
 import { config } from "dotenv";
 config();
 const botExists = async (req, res, next) => {
   const { id } = req.params;
-  const bot = await Bot.findById(id).populate('messages');
+  const bot = await Bot.findById(id).populate("messages");
   if (!bot)
     return res
       .status(404)
       .json({ status: 404, message: "No existe un bot con esa ID" });
-  req.url = process.env.BOT_URLA + bot.n + process.env.BOT_URLB;
   req.bot = bot;
   return next();
 };

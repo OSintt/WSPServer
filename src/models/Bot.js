@@ -1,10 +1,6 @@
-import { Schema, Types, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
 const BotSchema = new Schema({
-  l_active: {
-    type: Boolean,
-    default: false,
-  },
   t_active: {
     type: Boolean,
     default: false,
@@ -14,17 +10,26 @@ const BotSchema = new Schema({
     type: String,
     required: true,
   },
+  group_id: String,
+  phone: {
+    type: String,
+    unique: true
+  },
+  celular: String,
+  wsp: String,
+  host: String,
   messages: [
     {
       type: Types.ObjectId,
       ref: "Message",
     },
   ],
-  n: {
-    required: true,
-    unique: true,
-    type: Number,
-  },
+  numbers: [
+    {
+      type: Types.ObjectId,
+      ref: "Number",
+    },
+  ],
 });
 
 export default model("Bot", BotSchema);

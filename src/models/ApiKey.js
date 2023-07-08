@@ -9,6 +9,7 @@ const KeySchema = new Schema({
   time: {
     start: Number,
     finish: Number,
+    interval: Number
   },
 });
 
